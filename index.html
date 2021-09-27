@@ -9,11 +9,30 @@
 </head>
 <body>
    <header>
-       <a href="./assets/highscores.html">View Highscores</a>
+       <a href="#highscores" id="hiscore">View Highscores</a>
        <div id="timer">60 Seconds remaining</div>
    </header>
    <main>
        <h1>League of Legends Quiz</h1>
+       <button id="start">Start Quiz?</button>
+       <section id="game">
+           <h2 id="question"></h2>
+           <ol id="answers">
+               <li id="one" class="answer"></li>
+               <li id="two" class="answer"></li>
+               <li id="three" class="answer"></li>
+               <li id="four" class="answer"></li>
+           </ul>
+       </section>
+       <section id="highscores" class="hidden">
+            <ol>
+                <li id="score1">meep</li>
+                <li id="score2"></li>
+                <li id="score3"></li>
+                <li id="score4"></li>
+                <li id="score5"></li>
+            </ol>
+       </section>
    </main>
     
 

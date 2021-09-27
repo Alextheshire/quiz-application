@@ -23,3 +23,48 @@ header a {
 h1 {
     text-align: center;
 }
+#start {
+    position: relative;
+    left: 47vw;
+    top: 50px;
+}
+li {
+    text-align: center;
+    margin: 10px;
+    font-weight: bolder;
+}
+#game {
+    background-color: gold;
+    position: relative;
+    top: 100px;
+
+}
+#answers {
+    background: orange;
+}
+#question {
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+#one {
+    background-color: orchid;
+}
+#two {
+    background-color: paleturquoise;
+}
+#three {
+    background-color: pink;
+}
+#four {
+    background-color: purple;
+}
+#highscores {
+    background: red;
+    position: relative;
+    top: 200px;
+}
+#highscores li {
+    margin: 0 auto;
+}
