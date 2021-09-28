@@ -41,12 +41,14 @@ button {
     top: -10px;
     background: silver;
     border: 2px solid blue;
+    width: fit-content;
 
 }
 h1 {
     text-align: center;
     background: silver;
     border: 2px solid blue;
+    width: 100vw;
 }
 #start {
     position: relative;
