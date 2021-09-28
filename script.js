@@ -15,6 +15,8 @@ highscoreTwo = document.getElementById("score2")
 highscoreThree = document.getElementById("score3")
 highscoreFour = document.getElementById("score4")
 highscoreFive = document.getElementById("score5")
+var highScores = JSON.parse(localStorage.getItem("highScores") || "[]")
+
 
 
 
@@ -35,6 +37,7 @@ var answers = [
     ["Viego","Faker","Doublelift","Ryze"]
 ]
 function setTime() {
+
 
     function nextQuestion() {
         if(n < 5) {
@@ -75,7 +78,6 @@ function setTime() {
                     score = timeLeft
                     clearInterval(timerInterval)
                     endGame()
-                    return
                 }
                 
             } else {
@@ -91,7 +93,6 @@ function setTime() {
         score = timeLeft
         clearInterval(timerInterval)
         endGame()
-        return
     }
 
 }
@@ -119,11 +120,27 @@ startBtn.addEventListener("click",function() {
 function endGame() {
 startBtn.classList.remove("hidden")
 gameSpace.classList.add("hidden")
-console.log(score)
+var scoreName = prompt("What name would you like associated with this score?")
+var playerScore = [score,scoreName]
+console.log(highScores)
+highScores.push(playerScore)
+console.log(highScores)
+localStorage.setItem("highScores",JSON.stringify(highScores))
+
 }
 highscoreBtn.addEventListener("click", function() {
 
     highscoreSpace.classList.remove("hidden")
     gameSpace.classList.add("hidden")
+    highScores = JSON.parse(localStorage.getItem("highScores"))
+    console.log(highScores)
+    var sortedScores = highScores.sort(function(a, b) {
+        return b[0] - a[0];
+      });
+    highscoreOne.textContent = "Name: " + sortedScores[0][1] + " Score: " + sortedScores[0][0]
+    highscoreTwo.textContent = "Name: " + sortedScores[1][1] + " Score: " + sortedScores[1][0]
+    highscoreThree.textContent = "Name: " + sortedScores[2][1] + " Score: " + sortedScores[2][0]
+    highscoreFour.textContent = "Name: " + sortedScores[2][1] + " Score: " + sortedScores[3][0]
+    highscoreFive.textContent = "Name: " + sortedScores[3][1] + " Score: " + sortedScores[4][0]
 
 })
