@@ -3,6 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    background-image: url(./assets/Ashe_9.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: silver;
+}
 header {
     margin-top: 10px;
     padding: 10px;
@@ -11,17 +17,36 @@ header a {
     margin: 20px 0px 0 10px;
     padding: 10px;
     text-decoration: solid;
-    border: 2px solid green;
+    border: 2px solid blue;
+    background: silver;
     color: black;
 
 }
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em blue;
+  transform: translateY(-0.25em);
+}
+button {
+    background: silver;
+    border: 2px solid;
+    font: monospace;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+  }
 #timer {
     position: relative;
     left: 80vw;
     top: -10px;
+    background: silver;
+    border: 2px solid blue;
+
 }
 h1 {
     text-align: center;
+    background: silver;
+    border: 2px solid blue;
 }
 #start {
     position: relative;
@@ -34,37 +59,46 @@ li {
     font-weight: bolder;
 }
 #game {
-    background-color: gold;
+    background-color: silver;
     position: relative;
     top: 100px;
 
 }
 #answers {
-    background: orange;
+    background: blue;
+    font-size: 20px;
+    padding: 20px;
 }
 #question {
     text-align: center;
+    padding: 30px;
 }
 .hidden {
     display: none;
 }
 #one {
-    background-color: orchid;
+    background-color: gainsboro;
 }
 #two {
-    background-color: paleturquoise;
+    background-color: darkgrey;
 }
 #three {
-    background-color: pink;
+    background-color: gainsboro;
 }
 #four {
-    background-color: purple;
+    background-color: darkgrey;
 }
 #highscores {
-    background: red;
+    background: blue;
     position: relative;
     top: 200px;
+    border: 5px solid silver;
 }
 #highscores li {
     margin: 0 auto;
+    padding: 10px;
+    border: 1px solid silver;
+}
+#answers li:hover {
+    border: 1px solid black;
 }

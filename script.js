@@ -16,7 +16,7 @@ highscoreThree = document.getElementById("score3")
 highscoreFour = document.getElementById("score4")
 highscoreFive = document.getElementById("score5")
 var highScores = JSON.parse(localStorage.getItem("highScores") || "[]")
-
+var timerInterval
 
 
 
@@ -36,28 +36,29 @@ var answers = [
     ["Iceland","USA","Korea","Sweden"],
     ["Viego","Faker","Doublelift","Ryze"]
 ]
+function nextQuestion() {
+    if(n < 5) {
+    questionTitle.textContent = questions[n];
+    answerOne.textContent = answers[n][0];
+    answerTwo.textContent = answers[n][1];
+    answerThree.textContent = answers[n][2];
+    answerFour.textContent = answers[n][3];
+    } else {
+        score = timeLeft;
+        clearInterval(timerInterval)
+        endGame()
+    }
+    }
 function setTime() {
 
 
-    function nextQuestion() {
-        if(n < 5) {
-        questionTitle.textContent = questions[n];
-        answerOne.textContent = answers[n][0];
-        answerTwo.textContent = answers[n][1];
-        answerThree.textContent = answers[n][2];
-        answerFour.textContent = answers[n][3];
-        } else {
-            score = timeLeft;
-            clearInterval(timerInterval)
-            endGame()
-        }
-        }
+
     highscoreSpace.classList.add("hidden")
     gameSpace.classList.remove("hidden")
     n = 0
     timeLeft = 60;
     nextQuestion()
-    var timerInterval = setInterval(function() {
+     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = timeLeft + " seconds remaining";
         if(timeLeft <= 0) {
@@ -67,28 +68,7 @@ function setTime() {
         }
 
     }, 1000)
-    document.addEventListener("click", function(evnt){
-        console.log(n)
-        if(evnt.target.getAttribute("class")== "answer") {
-            if(evnt.target.textContent.includes("400") || evnt.target.textContent.includes("10") || evnt.target.textContent.includes("Physical") || evnt.target.textContent.includes("Sweden") || evnt.target.textContent.includes("Faker")) {
-                if(n < 5) {
-                    n = n+1;
-                    nextQuestion()
-                } else {
-                    score = timeLeft
-                    clearInterval(timerInterval)
-                    endGame()
-                }
-                
-            } else {
-                timeLeft = timeLeft-15;
-                n = n+1;
-                nextQuestion();
-            }
-        }
 
-
-    });
     if(n == 5) {
         score = timeLeft
         clearInterval(timerInterval)
@@ -96,6 +76,28 @@ function setTime() {
     }
 
 }
+document.addEventListener("click", function(evnt){
+    console.log(n)
+    if(evnt.target.getAttribute("class")== "answer") {
+        if(evnt.target.textContent.includes("400") || evnt.target.textContent.includes("10") || evnt.target.textContent.includes("Physical") || evnt.target.textContent.includes("Sweden") || evnt.target.textContent.includes("Faker")) {
+            if(n < 5) {
+                n = n+1;
+                nextQuestion()
+            } else {
+                score = timeLeft
+                clearInterval(timerInterval)
+                endGame()
+            }
+            
+        } else {
+            timeLeft = timeLeft-15;
+            n = n+1;
+            nextQuestion();
+        }
+    }
+
+
+});
 startBtn.addEventListener("click",function() {
     n = 0
     setTime()
@@ -120,7 +122,7 @@ startBtn.addEventListener("click",function() {
 function endGame() {
 startBtn.classList.remove("hidden")
 gameSpace.classList.add("hidden")
-var scoreName = prompt("What name would you like associated with this score?")
+var scoreName = prompt("Your score is: " + score + ".  What name would you like associated with this score?")
 var playerScore = [score,scoreName]
 console.log(highScores)
 highScores.push(playerScore)
@@ -129,7 +131,8 @@ localStorage.setItem("highScores",JSON.stringify(highScores))
 
 }
 highscoreBtn.addEventListener("click", function() {
-
+    startBtn.classList.remove("hidden")
+    clearInterval(timerInterval)
     highscoreSpace.classList.remove("hidden")
     gameSpace.classList.add("hidden")
     highScores = JSON.parse(localStorage.getItem("highScores"))
@@ -140,7 +143,7 @@ highscoreBtn.addEventListener("click", function() {
     highscoreOne.textContent = "Name: " + sortedScores[0][1] + " Score: " + sortedScores[0][0]
     highscoreTwo.textContent = "Name: " + sortedScores[1][1] + " Score: " + sortedScores[1][0]
     highscoreThree.textContent = "Name: " + sortedScores[2][1] + " Score: " + sortedScores[2][0]
-    highscoreFour.textContent = "Name: " + sortedScores[2][1] + " Score: " + sortedScores[3][0]
-    highscoreFive.textContent = "Name: " + sortedScores[3][1] + " Score: " + sortedScores[4][0]
+    highscoreFour.textContent = "Name: " + sortedScores[3][1] + " Score: " + sortedScores[3][0]
+    highscoreFive.textContent = "Name: " + sortedScores[4][1] + " Score: " + sortedScores[4][0]
 
 })
